@@ -6,18 +6,11 @@ const HouseManager = (props: HouseManagerProps) => {
 
   return (
     <group name="Houses">
-      {houses.map((house, index) => (
+      {houses.map((house) => (
         <House
-          key={index}
+          key={house.id} // Use unique id as key
           {...house}
-          onClickHousePointObject={(pointObject) => {
-            const houseGroupObject = pointObject.parent?.parent?.children.find(
-              (child) => child.name === "HouseGroup"
-            );
-
-            if (onClickHousePointObject && houseGroupObject)
-              onClickHousePointObject(pointObject, houseGroupObject);
-          }}
+          onClickHousePointObject={onClickHousePointObject} // Pass the callback directly
         />
       ))}
     </group>
